@@ -1,6 +1,6 @@
 # VitalRouter
 
-[![GitHub license](https://img.shields.io/github/license/hadashiA/VitalRouter)](./LICENSE)
+[![GitHub license](https://img.shields.io/github/license/Jlabarca/VitalRouter)](./LICENSE)
 ![Unity 2022.2+](https://img.shields.io/badge/unity-2022.2+-000.svg)
 ![.NET 6.0+](https://img.shields.io/badge/.NET-6.0%2B-512bd4.svg)
 
@@ -46,12 +46,12 @@ graph LR
 Commands are lightweight data structures representing an event or action.
 
 ```csharp
-// record structs are recommended for zero-allocation messaging
+// record structs are recommended for concise, zero-allocation messaging (C# 10+)
 public readonly record struct MoveCommand(Vector3 Destination) : ICommand;
 ```
 
 > [!TIP]
-> **AOT/HybridCLR Note**: While `record struct` is valid, ensure your AOT metadata is correctly generated for iOS/AOT environments if using tools like HybridCLR.
+> **Legacy Compatibility**: If you are on an older Unity version without C# 10 support, you can use `public readonly struct MoveCommand : ICommand { ... }` instead.
 
 ### 2. Create a Handler (Presenter)
 Use the `[Routes]` attribute on a `partial` class to receive commands.
